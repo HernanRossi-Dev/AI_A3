@@ -1,15 +1,8 @@
-from os import listdir
-from os.path import isfile, join
 import sklearn.datasets as datasets
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.model_selection import KFold
-import re
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB
-from sklearn.model_selection import KFold
+from sklearn.naive_bayes import BernoulliNB, MultinomialNB
+
 class NaiveBayesBernoulli:
 
     def __init__(self):
@@ -49,7 +42,6 @@ class NaiveBayesBernoulli:
             for review, category in zip(movie_reviews_dataset_test.target, predicted):
                 if movie_reviews_dataset.target_names[review]  == movie_reviews_dataset.target_names[category]:
                     correctPred +=1
-                # print('%r => %s' % (movie_reviews_dataset.target_names[review] ,movie_reviews_dataset.target_names[category]))
             print('Correct: ', correctPred)
             print('Accuracy: ', correctPred / 200)
             sumTotalCorrectPreds += correctPred
@@ -82,7 +74,6 @@ class NaiveBayesBernoulli:
             for review, category in zip(movie_reviews_dataset_test.target, predicted):
                 if movie_reviews_dataset.target_names[review]  == movie_reviews_dataset.target_names[category]:
                     correctPred +=1
-                # print('%r => %s' % (movie_reviews_dataset.target_names[review] ,movie_reviews_dataset.target_names[category]))
             print('Correct: ', correctPred)
             print('Accuracy: ', correctPred / 200)
             sumTotalCorrectPreds += correctPred
@@ -90,5 +81,9 @@ class NaiveBayesBernoulli:
         print('Total Accuracy: ', sumTotalCorrectPreds / 2000)
 
 naiveBayesPython = NaiveBayesBernoulli()
-# naiveBayesPython.parseInputFileMultinomial()
+print('Doing Multinomial')
+print('')
+naiveBayesPython.parseInputFileMultinomial()
 naiveBayesPython.parseInputFileBernoulli()
+print('Doing Bernoulli')
+print('')

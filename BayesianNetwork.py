@@ -10,10 +10,8 @@ class BayesianNetwork:
 
     def start(self):
 
-        cpd_difficulty = TabularCPD(variable='Difficulty', variable_card=2,
-                                    values=[[0.6], [0.4]])
-        cpd_musicianship = TabularCPD(variable='Musicianship', variable_card=2,
-                                    values=[[0.7], [0.3]])
+        cpd_difficulty = TabularCPD(variable='Difficulty', variable_card=2, values=[[0.6], [0.4]])
+        cpd_musicianship = TabularCPD(variable='Musicianship', variable_card=2, values=[[0.7], [0.3]])
 
         cpd_Rating = TabularCPD(variable='Rating', variable_card=3,
                                     values=[[0.3, 0.05, 0.9, 0.5],
@@ -36,23 +34,36 @@ class BayesianNetwork:
         self.musicModel.add_cpds(cpd_difficulty, cpd_musicianship, cpd_Rating, cpd_Exam, cpd_Letter)
         print(self.musicModel.check_model())
         infer = VariableElimination(self.musicModel)
-        examResult = infer.query(
-            variables=['Exam'], evidence={'Musicianship':1})['Exam']
-        musicResult = infer.query(
-            variables=['Musicianship'])['Musicianship']
-        ratingResult = infer.query(
-            variables=['Rating'], evidence={'Musicianship':1, 'Difficulty':0})['Rating']
-        diffResult = infer.query(
-            variables=['Difficulty'])['Difficulty']
-        letterResult = infer.query(
-            variables=['Letter'], evidence={'Rating':1})
+        # examResult = infer.query(
+        #     variables=['Exam'], evidence={'Musicianship':1})['Exam']
+        # musicResult = infer.query(
+        #     variables=['Musicianship'])['Musicianship']
+        # ratingResult = infer.query(
+        #     variables=['Rating'], evidence={'Musicianship':1, 'Difficulty':0})['Rating']
+        # diffResult = infer.query(
+        #     variables=['Difficulty'])['Difficulty']
+        # letterResult = infer.query(
+        #     variables=['Letter'], evidence={'Rating':1})['Letter']
+        #
+        # print(examResult)
+        # print(musicResult)
+        # print(ratingResult)
+        # print(diffResult)
+        # print(letterResult)
 
-        print(examResult)
-        print(musicResult)
-        print(ratingResult)
-        print(diffResult)
+        # THIS IS NOT WORKING IT IS PART 2 Getting weird results
+        # letterNoOtherEvidence = infer.query(
+        #      variables=['Letter'])['Letter']
+        # letterResult = infer.query(
+        #          variables=['Letter'], evidence={'Musicianship':0})['Letter']
+        # print(letterNoOtherEvidence)
+        # print(letterResult)
+        # print('')
 
-        print(letterResult.values())
+
+        #
+        # QUESTION THREE PART ONE
+
 
 bayesianNetwork = BayesianNetwork()
 bayesianNetwork.start()
