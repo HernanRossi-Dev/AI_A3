@@ -1,7 +1,6 @@
 from pgmpy.models import BayesianModel
 from pgmpy.factors.discrete import TabularCPD
 from pgmpy.inference import VariableElimination
-from pgmpy.inference import BeliefPropagation
 
 class BayesianNetwork:
     def __init__(self):
