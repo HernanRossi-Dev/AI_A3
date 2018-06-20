@@ -33,35 +33,32 @@ class BayesianNetwork:
         self.musicModel.add_cpds(cpd_difficulty, cpd_musicianship, cpd_Rating, cpd_Exam, cpd_Letter)
         print(self.musicModel.check_model())
         infer = VariableElimination(self.musicModel)
-        # examResult = infer.query(
-        #     variables=['Exam'], evidence={'Musicianship':1})['Exam']
-        # musicResult = infer.query(
-        #     variables=['Musicianship'])['Musicianship']
-        # ratingResult = infer.query(
-        #     variables=['Rating'], evidence={'Musicianship':1, 'Difficulty':0})['Rating']
-        # diffResult = infer.query(
-        #     variables=['Difficulty'])['Difficulty']
-        # letterResult = infer.query(
-        #     variables=['Letter'], evidence={'Rating':1})['Letter']
-        #
-        # print(examResult)
-        # print(musicResult)
-        # print(ratingResult)
-        # print(diffResult)
-        # print(letterResult)
+        examResult = infer.query(
+            variables=['Exam'], evidence={'Musicianship':1})['Exam']
+        musicResult = infer.query(
+            variables=['Musicianship'])['Musicianship']
+        ratingResult = infer.query(
+            variables=['Rating'], evidence={'Musicianship':1, 'Difficulty':0})['Rating']
+        diffResult = infer.query(
+            variables=['Difficulty'])['Difficulty']
+        letterResult = infer.query(
+            variables=['Letter'], evidence={'Rating':1})['Letter']
+
+        print(examResult)
+        print(musicResult)
+        print(ratingResult)
+        print(diffResult)
+        print(letterResult)
 
         # THIS IS NOT WORKING IT IS PART 2 Getting weird results
-        # letterNoOtherEvidence = infer.query(
-        #      variables=['Letter'])['Letter']
-        # letterResult = infer.query(
-        #          variables=['Letter'], evidence={'Musicianship':0})['Letter']
-        # print(letterNoOtherEvidence)
-        # print(letterResult)
-        # print('')
+        letterNoOtherEvidence = infer.query(
+             variables=['Letter'])['Letter']
+        letterResult = infer.query(
+                 variables=['Letter'], evidence={'Musicianship':0})['Letter']
+        print(letterNoOtherEvidence)
+        print(letterResult)
+        print('')
 
-
-        #
-        # QUESTION THREE PART ONE
 
 
 bayesianNetwork = BayesianNetwork()
